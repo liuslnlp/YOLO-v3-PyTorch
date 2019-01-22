@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object Detection</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Online object detection system based on YOLO(v3) algorithm.</h1>
+<form action="" enctype='multipart/form-data' method='POST'>
+    <input type="file" name="file"/>
+    <input type="submit" value="Upload" style="height:100px; width:200px"/>
+</form>
+<br>
+<div class="container">
+	<h3>Labeled image</h3>                
+	<img src="{{ url_for('static', filename= './results/' + fname) }}" class="img-responsive" width="{{width}}" height="{{height}}" alt="Error"/>
+</div>
+
+</body>
+</html>

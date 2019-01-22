@@ -2,7 +2,13 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+.vscode
+yolov3.pkl
+yolov3.weights
+demo.bat
+det/
+app/static/images/
+app/static/results/
 # C extensions
 *.so
 
