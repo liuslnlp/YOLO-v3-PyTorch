@@ -12,7 +12,7 @@ document it as well as I can.
 3. [optional] OpenCV Python Package(cv2) 
 4. [optional] flask
 ## Detection Example
-![img](docs/det_lh.jpg)
+![img](docs/det_lh.jpeg)
 ## Before Using
 The first thing you need to do is to download weights file and convert it to PyTorch-style weights file.
 ```

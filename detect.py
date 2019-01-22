@@ -9,7 +9,7 @@ import os
 import os.path as osp
 from yolo.darknet import Darknet
 from yolo.io import load_classes, load_colors
-from yolo.util import add_rectangle, sift_results
+from yolo.util import plot_rectangle, sift_results
 from yolo.preprocess import prep_image, inp_to_image
 import pandas as pd
 import random 
@@ -211,7 +211,7 @@ def main():
     class_load = time.time()
     colors = load_colors('data/pallete')
     draw = time.time()
-    list(map(lambda x: add_rectangle(x, orig_ims, classes, colors), output))
+    list(map(lambda x: plot_rectangle(x, orig_ims, classes, colors), output))
 
     if platform.system() == 'Windows':
         det_names = pd.Series(imlist).apply(
