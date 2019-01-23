@@ -18,17 +18,21 @@ class MaxPoolStride1(nn.Module):
 
 class EmptyLayer(nn.Module):
     """Placeholder"""
-    def __init__(self):
+    def __init__(self, buf=None):
         super().__init__()
+        self.buf=buf
 
 
 class DetectionLayer(nn.Module):
-    def __init__(self, anchors):
+    def __init__(self, inp_dim, anchors, num_classes):
         super().__init__()
+        self.inp_dim = inp_dim
         self.anchors = anchors
+        self.num_classes = num_classes
+        #print("DetLay: ",inp_dim, anchors, num_classes)
 
-    def forward(self, x, inp_dim, num_classes, confidence):
+    def forward(self, x):
         x = x.data
         prediction = predict_transform(
-            x, inp_dim, self.anchors, num_classes)
+            x, self.inp_dim, self.anchors, self.num_classes)
         return prediction

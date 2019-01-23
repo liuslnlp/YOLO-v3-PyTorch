@@ -7,6 +7,16 @@ from .layers import EmptyLayer, MaxPoolStride1, DetectionLayer
 
 def create_modules(blocks):
     """A help function to build module list by blocks.
+    Parameters
+    ----------
+    blocks : A list to describe hyperparameters in different layers.
+    blocks[i] is a dict, blocks[i][hyperparameter_key] = hyperparameter_val
+
+    Return
+    ----------
+    (net_info, module_list), net_info is a dict object, includes some information
+    like `batch`, `input width` and so on.
+    module_list is a stack-like struct(nn.ModuleList), includes the net layers.
     """
     # Captures the information about the input and pre-processing
     net_info = blocks[0]
@@ -68,7 +78,7 @@ def create_modules(blocks):
 
         elif (x["type"] == "upsample"):
             stride = int(x["stride"])
-            upsample = EmptyLayer()
+            upsample = EmptyLayer(stride)
             module.add_module("upsample_{}".format(index), upsample)
 
         #If it is a route layer
@@ -127,7 +137,9 @@ def create_modules(blocks):
                        for i in range(0, len(anchors), 2)]
             anchors = [anchors[i] for i in mask]
 
-            detection = DetectionLayer(anchors)
+            inp_dim = int(net_info["height"])
+            num_class = int(x["classes"])
+            detection = DetectionLayer(inp_dim, anchors, num_class)
             module.add_module("Detection_{}".format(index), detection)
 
         else:

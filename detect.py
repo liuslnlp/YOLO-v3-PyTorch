@@ -69,11 +69,11 @@ def main():
         CUDA = False
 
     print("Loading network.....")
-    model = Darknet(args.cfgfile)
+    model = Darknet(args.cfgfile, height=args.reso)
     # model.load_weights(args.weightsfile)
     model.load_state_dict(torch.load(weights_file))
     print("Network successfully loaded")
-    model.net_info["height"] = args.reso
+    #model.net_info["height"] = args.reso
     inp_dim = int(model.net_info["height"])
     assert inp_dim % 32 == 0 
     assert inp_dim > 32

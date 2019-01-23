@@ -36,5 +36,6 @@ waiting
 ```python app/webapp.py```  
 then open your browser and visit `http://localhost:5000`.
 ## Reference
-* https://github.com/ayooshkathuria/pytorch-yolo-v3
-* https://github.com/rbgirshick/fast-rcnn
+* https://github.com/ayooshkathuria/pytorch-yolo-v3 (Main structure)
+* https://github.com/rbgirshick/fast-rcnn (NMS)
+* https://github.com/wizyoung/YOLOv3_TensorFlow (Plot function)

@@ -45,9 +45,8 @@ class DarknetModel(object):
         self.num_classes = 80
         self.classes = load_classes('data/coco.names') 
         self.colors = load_colors('data/pallete')
-        self.model = Darknet('cfg/yolov3.cfg')
+        self.model = Darknet('cfg/yolov3.cfg', self.reso)
         self.model.load_state_dict(torch.load('yolov3.pkl'))
-        self.inp_dim = int(self.model.net_info["height"])
         assert self.inp_dim % 32 == 0 
         assert self.inp_dim > 32
         if self.CUDA:
