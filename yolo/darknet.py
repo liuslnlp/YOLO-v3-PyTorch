@@ -26,7 +26,8 @@ class Darknet(nn.Module):
         return self.module_list
 
     def load_darknet_weights(self, filename):
-        self.header, self.seen = load_darknet_model(filename, self.blocks, self.module_list)
+        self.header, self.seen = load_darknet_model(
+            filename, self.blocks, self.module_list)
 
     def forward(self, x):
         detections = []
@@ -35,8 +36,7 @@ class Darknet(nn.Module):
 
         for i in range(len(modules)):
             module_type = (modules[i]["type"])
-            if module_type == "convolutional" or module_type == "maxpool":
-
+            if module_type in ("convolutional", "maxpool"):
                 x = self.module_list[i](x)
                 outputs[i] = x
 
@@ -62,4 +62,3 @@ class Darknet(nn.Module):
                 detections.append(x)
                 outputs[i] = outputs[i-1]
         return torch.cat(detections, 1)
-

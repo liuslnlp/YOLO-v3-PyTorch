@@ -152,5 +152,3 @@ def create_modules(blocks):
         index += 1
 
     return (net_info, module_list)
-
-

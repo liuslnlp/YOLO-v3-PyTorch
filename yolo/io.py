@@ -4,18 +4,21 @@ import pickle as pkl
 import torch
 import numpy as np
 
+
 def load_classes(namesfile):
     """Load classes file, which class names split by \n"""
     with open(namesfile, 'r') as f:
         names = f.read().split("\n")[:-1]
     return names
 
+
 def load_colors(filename):
     """Load colors map."""
     with open(filename, "rb") as f:
         colors = pkl.load(f)
     return colors
-    
+
+
 def load_cfg(filename):
     """Load net structure config.
     Paramaters
@@ -47,8 +50,8 @@ def load_cfg(filename):
         lines = f.readlines()
     for line in lines:
         line = line.strip(' \n')
-        # Get rid of blank line and comment. 
-        if len(line)==0 or line[0] == '#':
+        # Get rid of blank line and comment.
+        if len(line) == 0 or line[0] == '#':
             continue
         if line[0] == "[":
             if len(block) != 0:
@@ -61,6 +64,7 @@ def load_cfg(filename):
     if len(block) != 0:
         blocks.append(block)
     return blocks
+
 
 def load_darknet_model(filename, blocks, module_list):
     """Load darknet style model weights file.

@@ -18,9 +18,10 @@ class MaxPoolStride1(nn.Module):
 
 class EmptyLayer(nn.Module):
     """Placeholder"""
+
     def __init__(self, buf=None):
         super().__init__()
-        self.buf=buf
+        self.buf = buf
 
 
 class DetectionLayer(nn.Module):
