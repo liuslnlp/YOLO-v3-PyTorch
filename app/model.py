@@ -47,6 +47,7 @@ class DarknetModel(object):
         self.colors = load_colors('data/pallete')
         self.model = Darknet('cfg/yolov3.cfg', self.reso)
         self.model.load_state_dict(torch.load('yolov3.pkl'))
+        self.inp_dim = self.reso
         assert self.inp_dim % 32 == 0 
         assert self.inp_dim > 32
         if self.CUDA:
@@ -66,6 +67,6 @@ class DarknetModel(object):
         output[:,[1,3]] *= image.shape[1]
         output[:,[2,4]] *= image.shape[0]
 
-        print(output.shape)
+
         list(map(lambda x: write(x, orig_im, self.classes, self.colors), output))
         return orig_im
