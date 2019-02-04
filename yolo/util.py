@@ -144,16 +144,16 @@ def sift_results(prediction, confidence, num_classes, nms=True, nms_conf=0.4):
     return torch.cat(output)
 
 
-def plot_rectangle(out, images, classes, colors, line_thickness=None):
+def plot_rectangle(out, img, classes, colors, line_thickness=None):
     """Add label and rectangle to an image.
     Parameters
     --------
     out : A vector, represent output of network, out=[batch_num,x1,y1,x2,y2,score,prob,cls_num].
-    images : images tensor, images[i] = [H, W, C].
+    img : images tensor, img = [H, W, C].
     """
     c1 = tuple(out[1:3].int())
     c2 = tuple(out[3:5].int())
-    img = images[int(out[0])]
+
     cls = int(out[-1])
     label = "{0}".format(classes[cls])
     color = random.choice(colors)
@@ -166,3 +166,4 @@ def plot_rectangle(out, images, classes, colors, line_thickness=None):
     cv2.putText(img, label, (c1[0], c1[1] - 2), 0, float(tl) / 3,
                 [255, 255, 255], thickness=1, lineType=cv2.LINE_AA)
     return img
+

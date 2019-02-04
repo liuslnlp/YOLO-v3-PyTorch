@@ -164,10 +164,6 @@ def main():
             continue
 
         end = time.time()
-
-
-#
-
         prediction[:, 0] += i*batch_size
 
         output.append(prediction)
@@ -211,7 +207,9 @@ def main():
     class_load = time.time()
     colors = load_colors('data/pallete')
     draw = time.time()
-    list(map(lambda x: plot_rectangle(x, orig_ims, classes, colors), output))
+    for out in output:
+        idx = int(out[0])
+        plot_rectangle(out, orig_ims[idx], classes, colors)
 
     if platform.system() == 'Windows':
         det_names = pd.Series(imlist).apply(
