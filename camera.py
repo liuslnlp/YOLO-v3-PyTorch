@@ -23,7 +23,7 @@ def arg_parse():
     """
     
     
-    parser = argparse.ArgumentParser(description='YOLO v3 Cam Demo')
+    parser = argparse.ArgumentParser(description='YOLO v3 Camera Demo')
     parser.add_argument("--confidence", dest = "confidence", help = "Object Confidence to filter predictions", default = 0.25)
     parser.add_argument("--nms_thresh", dest = "nms_thresh", help = "NMS Threshhold", default = 0.4)
     parser.add_argument("--reso", dest = 'reso', help = 

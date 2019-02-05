@@ -11,6 +11,8 @@ app/static/images/
 app/static/results/
 # C extensions
 *.so
+*.mp4
+*.avi
 
 # Distribution / packaging
 .Python
